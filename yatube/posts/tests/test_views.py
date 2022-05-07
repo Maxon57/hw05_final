@@ -269,14 +269,14 @@ class FollowUser(TestCase):
         """Авторизированный клиент может отписаться
          от пользователя."""
         Follow.objects.create(
-            author=self.user,
-            user=self.new_user
+            author=self.new_user,
+            user=self.user
         )
         response = self.authorized_client.get(data.UNFOLLOW_USER.value)
         self.assertFalse(
             Follow.objects.filter(
-                author=self.user,
-                user=self.new_user
+                author=self.new_user,
+                user=self.user
             ).exists()
         )
         self.assertRedirects(response, data.NEW_PROFILE.value)

@@ -8,7 +8,6 @@ User = get_user_model()
 
 class Post(models.Model):
     """Класс определяет модель постов."""
-
     text = models.TextField('Текст',
                             help_text='Введите текст поста'
                             )
@@ -48,7 +47,6 @@ class Post(models.Model):
 
 class Group(models.Model):
     """Класс определяет модель групп к постам."""
-
     title = models.CharField(max_length=200,
                              verbose_name='Название'
                              )
@@ -66,6 +64,7 @@ class Group(models.Model):
 
 
 class Comment(CreatedModel):
+    """Класс определяет модель для комментариев."""
     post = models.ForeignKey(Post,
                              on_delete=models.CASCADE,
                              related_name='comments'
@@ -87,6 +86,7 @@ class Comment(CreatedModel):
 
 
 class Follow(models.Model):
+    """Класс определяет модель для подписок."""
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
                              related_name='follower'

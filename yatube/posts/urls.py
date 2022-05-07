@@ -1,8 +1,12 @@
 from django.urls import path
 
-from .views import (add_comment, follow_index, group_posts, index, post_create,
-                    post_detail, post_edit, profile, profile_follow,
-                    profile_unfollow)
+from .views import (
+    add_comment, follow_index,
+    group_posts, index,
+    post_create, post_detail,
+    post_edit, profile, profile_follow,
+    profile_unfollow
+)
 
 app_name = 'posts'
 urlpatterns = [
