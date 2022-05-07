@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %} Технлогии {% endblock %}
+{% block content %}
+    {% load static %}
+    <div class="container my-5">
+        <div class="row">
+            <aside class="col-12 col-md-3">
+                <h5>Вот что я умею:</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        Python
+                    </li>
+                    <li class="list-group-item">
+                        Django
+                    </li>
+                    <li class="list-group-item">
+                        GIT
+                    </li>
+                </ul>
+            </aside>
+            <article class="col-12 col-md-9">
+                <h3>Что мне помогло создать этот проект:</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-5 col-lg-3"><img src="{% static 'img/tech/PyCharm.png' %}"
+                                                             width="150" height="150" alt="PyCharm">
+                        </div>
+                        <div class="col-12 col-md-7 col-lg-9">
+                            <p>
+                                <strong>PyCharm</strong> — интегрированная среда разработки для языка программирования Python.
+                                Предоставляет средства для анализа кода, графический отладчик, инструмент для запуска
+                                юнит-тестов и поддерживает веб-разработку на Django.
+                                PyCharm разработана компанией JetBrains на основе IntelliJ IDEA.
+                                PyCharm — это кроссплатформенная среда разработки, которая совместима
+                                с Windows, macOS, Linux. PyCharm Community Edition (бесплатная версия)
+                                находится под лицензией Apache License, а PyCharm Professional Edition
+                                (платная версия) является проприетарным ПО.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-5 col-lg-3"><img src="{% static 'img/tech/Django.png' %}"
+                                                                 width="150" height="150" alt="PyCharm">
+                            </div>
+                            <div class="col-12 col-md-7 col-lg-9">
+                                <p>
+                                    <strong>Django</strong> (Джанго) — свободный фреймворк для веб-приложений на языке
+                                    Python,
+                                    использующий шаблон проектирования MVC. Проект поддерживается организацией Django
+                                    Software Foundation.
+                                    Сайт на Django строится из одного или нескольких приложений, которые рекомендуется
+                                    делать отчуждаемыми
+                                    и подключаемыми. Это одно из существенных архитектурных отличий этого фреймворка от
+                                    некоторых других
+                                    (например, Ruby on Rails). Один из основных принципов фреймворка — DRY (англ. Don't
+                                    repeat yourself)
+                                    Также, в отличие от других фреймворков, обработчики URL в Django конфигурируются
+                                    явно при помощи
+                                    регулярных выражений.
+                                    Для работы с базой данных Django использует собственный ORM, в котором модель данных
+                                    описывается
+                                    классами Python, и по ней генерируется схема базы данных.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-5 col-lg-3"><img src="{% static 'img/tech/Bootstrap.png' %}"
+                                                             width="150" height="150" alt="PyCharm">
+                            </div>
+                            <div class="col-12 col-md-7 col-lg-9">
+                                <p>
+                                    <strong>Bootstrap</strong> (также известен как Twitter Bootstrap) — свободный набор инструментов
+                                    для создания сайтов и веб-приложений. Включает в себя HTML- и CSS-шаблоны оформления
+                                    для типографики, веб-форм, кнопок, меток, блоков навигации и прочих компонентов веб-интерфейса,
+                                    включая JavaScript-расширения.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </article>
+        </div>
+    </div>
+{% endblock %}

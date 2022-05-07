@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Главная страница проекта Yatube{% endblock %}
+{% block content %}
+    {% include 'posts/includes/switcher.html' %}
+    <div class="container">
+        <h1>Последние обновления на сайте</h1>
+        {% load cache %}
+        {% cache 20 index_page with page_obj %}
+            {% for post in page_obj %}
+                {% include 'posts/includes/post_list.html' %}
+                {% if not forloop.last %}
+                    <hr>
+                {% endif %}
+            {% empty %}
+                <p>
+                    К сожалению нет ни одного поста
+                </p>
+            {% endfor %}
+        {% endcache %}
+        {% include 'includes/paginator.html' %}
+    </div>
+{% endblock %}

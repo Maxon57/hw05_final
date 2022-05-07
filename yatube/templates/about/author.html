@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %} Об авторе {% endblock %}
+{% block content %}
+    {% load static %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="mb-3 mt-5">Игнатов Максим</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <p>Всем привет! Как Вам на моем сайте Yatube? Давольно таки не плохо, на правда ли? Как вы поняли, меня
+            зовут Максим, я явлюсь магистром 1 курса Орловского Государственного Университета по направлению
+            "Управление в технических системах". Еще во время обучения на бакалавриате меня стала
+            интересовать веб-разработка. Уже тогда я стал пробовать создавать свои первые HTML странички,
+            которым бы позавидовал бы любой верстальщик. Шутка... Мои одногруппники и друзья на тот момент уже стали работать
+             python и C# программистами. Они меня, кстати, и подталкнули сделать первый шаг в цифровой мир!
+            И вот в прошлом году я устроился на работу python разработчиком. Задачи, которые я выполняю
+            абсолютно разные. Это может быть обычный парсер или какие-то вещи, связанные с информационной безопасностью.
+            Конечно, мне как младшему разработчику, дают задачи по силам, что я считаю правильным.
+            На данный момент, нет проектов по Django, хотя я уже во время испытательного срока успел покодить
+            и какие-то навыки у меня отложились.
+        </p>
+          <div>
+              <p>Почему я решил пойти на Яндекс.Практикум?</p>
+              <ul>
+                  <li> во-первых, приобрести и закрепить знания,</li>
+                  <li> во-вторых, получение и обмен бесценным опытом,</li>
+                  <li> в-третьих, это общение с такими же ребятами, как ты, которые тоже
+                      постепенно погружаются в мир IT
+                  </li>
+              </ul>
+          </div>
+        <p>
+
+        </p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <img src="{% static 'img/author/author.jpg' %}" class="img-thumbnail" alt="Автор">
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Контакты для связи</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  <div class="d-flex flex-row">
+    <div class="p-2">
+         <a href="mailto: gnatov.mack@yandex.ru">
+             <img src="{% static 'img/author/icon/yandex.png' %}"
+                  width="30" height="30" alt="яндекс-почта">
+         </a>
+    </div>
+    <div class="p-2">
+        <a href="https://vk.com/ignatov.mack">
+            <img src="{% static 'img/author/icon/vk.png' %}"
+                  width="30" height="30" alt="Вконтакте">
+        </a>
+    </div>
+    <div class="p-2">
+        <a href="https://t.me/Maxonchik57">
+           <img src="{% static 'img/author/icon/Telegram.png' %}"
+                  width="30" height="30" alt="Телеграм">
+        </a>
+    </div>
+  </div>
+{#    <div class="row">#}
+{#      <div class="col-12">#}
+{#       #}
+{#        <p>Скайп: mihailmaximov</p>#}
+{#        <p>Телеграм: @mihailmaximov</p>#}
+{#      </div>#}
+{#    </div>#}
+  </div>
+
+{% endblock %}
