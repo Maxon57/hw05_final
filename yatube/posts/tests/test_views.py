@@ -17,6 +17,7 @@ class PostsViewsTest(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.user = User.objects.create_user(username=data.USERNAME.value)
+        cls.new_user = User.objects.create_user(username=data.NEW_USERNAME.value)
         cls.small_gif = (
             b'\x47\x49\x46\x38\x39\x61\x02\x00'
             b'\x01\x00\x80\x00\x00\x00\x00\x00'
@@ -41,11 +42,6 @@ class PostsViewsTest(TestCase):
             group=cls.group,
             image=cls.uploaded
         )
-        cls.new_post = Post.objects.create(
-            text='New_Post',
-            author=cls.new_user,
-        )
-
         cls.DETAIL_POST = reverse('posts:post_detail',
                                   kwargs={'post_id': cls.post.pk}
                                   )
