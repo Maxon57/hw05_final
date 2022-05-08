@@ -257,8 +257,8 @@ class FollowUser(TestCase):
         response = self.authorized_client.get(data.FOLLOW_USER.value)
         self.assertTrue(
             Follow.objects.filter(
-                author=self.user,
-                user=self.new_user
+                author=self.new_user,
+                user=self.user
             ).exists()
         )
         self.assertRedirects(response, data.NEW_PROFILE.value)
