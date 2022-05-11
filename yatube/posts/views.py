@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CommentForm, PostForm
 from .models import Comment, Follow, Group, Post, User
-from .utils import install_paginator, check_user
+from .utils import check_user, install_paginator
 
 
 def index(request):

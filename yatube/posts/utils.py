@@ -1,6 +1,5 @@
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
-
 from posts.models import Follow
 
 
