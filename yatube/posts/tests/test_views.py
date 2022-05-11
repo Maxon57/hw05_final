@@ -1,15 +1,12 @@
 from http import HTTPStatus
 
 from django import forms
-from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from ..models import Follow, Group, Post
+from ..models import Follow, Group, Post, User
 from .utils_tests import TestVariables as data
-
-User = get_user_model()
 
 
 class PostsViewsTest(TestCase):
@@ -45,13 +42,13 @@ class PostsViewsTest(TestCase):
             image=cls.uploaded
         )
         cls.DETAIL_POST = reverse('posts:post_detail',
-                                  kwargs={'post_id': cls.post.pk}
+                                  args=[cls.post.pk]
                                   )
         cls.POST_EDIT = reverse('posts:post_edit',
-                                kwargs={'post_id': cls.post.pk}
+                                args=[cls.post.pk]
                                 )
         cls.ADD_COMMENT = reverse('posts:add_comment',
-                                  kwargs={'post_id': cls.post.pk}
+                                  args=[cls.post.pk]
                                   )
         cls.templates_page_names = {
             data.INDEX.value: 'posts/index.html',

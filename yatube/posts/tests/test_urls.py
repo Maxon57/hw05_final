@@ -25,11 +25,10 @@ class PostsURLTests(TestCase):
             text='Тестовый пост',
         )
         cls.POST_EDIT = reverse('posts:post_edit',
-                                kwargs={'post_id': cls.post.pk}
+                                args=[cls.post.pk]
                                 )
         cls.DETAIL_POST = reverse('posts:post_detail',
-                                  kwargs={'post_id': cls.post.pk}
-
+                                  args=[cls.post.pk]
                                   )
         cls.templates_url_names = {
             data.INDEX.value: 'posts/index.html',

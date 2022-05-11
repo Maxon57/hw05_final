@@ -9,19 +9,19 @@ class TestVariables(enum.Enum):
     GROUP_POST_SLAG = 'test-slug'
     INDEX = reverse('posts:index')
     GROUP_POST = reverse('posts:group_posts',
-                         kwargs={'slug': GROUP_POST_SLAG}
+                         args=[GROUP_POST_SLAG]
                          )
     PROFILE = reverse('posts:profile',
-                      kwargs={'username': USERNAME}
+                      args=[USERNAME]
                       )
     NEW_PROFILE = reverse('posts:profile',
-                          kwargs={'username': NEW_USERNAME}
+                          args=[NEW_USERNAME]
                           )
     FOLLOW_USER = reverse('posts:profile_follow',
-                          kwargs={'username': NEW_USERNAME}
+                          args=[NEW_USERNAME]
                           )
     UNFOLLOW_USER = reverse('posts:profile_unfollow',
-                            kwargs={'username': NEW_USERNAME}
+                            args=[NEW_USERNAME]
                             )
     FOLLOW_INDEX = reverse('posts:follow_index')
     CREATE_POST = reverse('posts:post_create')
