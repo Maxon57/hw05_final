@@ -55,16 +55,14 @@ def post_detail(request, post_id):
 
 @login_required
 def post_create(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST,
-                        files=request.FILES or None
-                        )
-        if form.is_valid():
-            save_form = form.save(commit=False)
-            save_form.author_id = request.user.pk
-            save_form.save()
-            return redirect('posts:profile', username=request.user.username)
-    form = PostForm()
+    form = PostForm(request.POST or None,
+                    files=request.FILES or None
+                    )
+    if form.is_valid():
+        save_form = form.save(commit=False)
+        save_form.author_id = request.user.pk
+        save_form.save()
+        return redirect('posts:profile', username=request.user.username)
     context = {'form': form}
     return render(request, 'posts/create_post.html', context)
 
@@ -72,27 +70,24 @@ def post_create(request):
 @login_required
 def post_edit(request, post_id):
     post = Post.objects.select_related('author').get(pk=post_id)
-    if request.method == 'POST':
-        form = PostForm(
-            request.POST or None,
-            files=request.FILES or None,
-            instance=post)
-        if form.is_valid():
-            save_form = form.save(commit=False)
-            save_form.author_id = request.user.pk
-            save_form.pk = post_id
-            save_form.save()
-            return redirect('posts:post_detail', post_id)
+    form = PostForm(
+        request.POST or None,
+        files=request.FILES or None,
+        instance=post)
+    if form.is_valid():
+        save_form = form.save(commit=False)
+        save_form.author_id = request.user.pk
+        save_form.pk = post_id
+        save_form.save()
+        return redirect('posts:post_detail', post_id)
+    if post.author.pk == request.user.pk:
+        context = {'form': form,
+                   'is_edit': True,
+                   'post_id': post_id
+                   }
+        return render(request, 'posts/create_post.html', context)
     else:
-        if post.author.pk == request.user.pk:
-            form = PostForm(instance=post)
-            context = {'form': form,
-                       'is_edit': True,
-                       'post_id': post_id
-                       }
-            return render(request, 'posts/create_post.html', context)
-        else:
-            return redirect('users:login')
+        return redirect('users:login')
 
 
 @login_required
@@ -128,7 +123,9 @@ def profile_follow(request, username):
 @login_required
 def profile_unfollow(request, username):
     user = get_object_or_404(User, username=username)
-    Follow.objects.filter(author=user,
-                          user=request.user
-                          ).delete()
+    user_unfollow = Follow.objects.filter(author=user,
+                                          user=request.user
+                                          )
+    if user_unfollow.exists():
+        user_unfollow.delete()
     return redirect('posts:profile', username)
