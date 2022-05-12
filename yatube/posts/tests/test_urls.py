@@ -30,16 +30,6 @@ class PostsURLTests(TestCase):
         cls.DETAIL_POST = reverse('posts:post_detail',
                                   args=[cls.post.pk]
                                   )
-        cls.templates_url_names = {
-            data.INDEX.value: 'posts/index.html',
-            data.GROUP_POST.value: 'posts/group_list.html',
-            cls.DETAIL_POST: 'posts/post_detail.html',
-            data.PROFILE.value: 'posts/profile.html',
-            data.CREATE_POST.value: 'posts/create_post.html',
-            cls.POST_EDIT: 'posts/create_post.html',
-            data.FOLLOW_INDEX.value: 'posts/follow.html',
-            data.FAKE_PAGE.value: 'core/404.html'
-        }
 
     def setUp(self):
         self.guest_client = Client()
@@ -135,7 +125,10 @@ class PostsURLTests(TestCase):
 
     def test_urls_uses_correct_template(self):
         """URL-адрес использует соответствующий шаблон."""
-        for url, template in self.templates_url_names.items():
+        templates_url_names = data.templates_url_names.value
+        templates_url_names[self.DETAIL_POST] = 'posts/post_detail.html'
+        templates_url_names[self.POST_EDIT] = 'posts/create_post.html'
+        for url, template in templates_url_names.items():
             with self.subTest(url=url):
                 response = self.authorized_client.get(url)
                 self.assertTemplateUsed(response, template)

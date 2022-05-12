@@ -1,7 +1,6 @@
 from http import HTTPStatus
 
 from django import forms
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -17,19 +16,6 @@ class PostsViewsTest(TestCase):
         cls.new_user = User.objects.create_user(
             username=data.NEW_USERNAME.value
         )
-        cls.small_gif = (
-            b'\x47\x49\x46\x38\x39\x61\x02\x00'
-            b'\x01\x00\x80\x00\x00\x00\x00\x00'
-            b'\xFF\xFF\xFF\x21\xF9\x04\x00\x00'
-            b'\x00\x00\x00\x2C\x00\x00\x00\x00'
-            b'\x02\x00\x01\x00\x00\x02\x02\x0C'
-            b'\x0A\x00\x3B'
-        )
-        cls.uploaded = SimpleUploadedFile(
-            name='small.gif',
-            content=cls.small_gif,
-            content_type='image/gif'
-        )
         cls.group = Group.objects.create(
             title='Тестовая группа',
             description='Тестовое описание',
@@ -39,7 +25,7 @@ class PostsViewsTest(TestCase):
             text='Тестовый пост 1',
             author=cls.user,
             group=cls.group,
-            image=cls.uploaded
+            image=data.uploaded.value
         )
         cls.DETAIL_POST = reverse('posts:post_detail',
                                   args=[cls.post.pk]
@@ -50,14 +36,6 @@ class PostsViewsTest(TestCase):
         cls.ADD_COMMENT = reverse('posts:add_comment',
                                   args=[cls.post.pk]
                                   )
-        cls.templates_page_names = {
-            data.INDEX.value: 'posts/index.html',
-            data.GROUP_POST.value: 'posts/group_list.html',
-            data.PROFILE.value: 'posts/profile.html',
-            cls.DETAIL_POST: 'posts/post_detail.html',
-            data.CREATE_POST.value: 'posts/create_post.html',
-            cls.POST_EDIT: 'posts/create_post.html'
-        }
 
     def setUp(self) -> None:
         self.guest_client = Client()
@@ -67,7 +45,10 @@ class PostsViewsTest(TestCase):
 
     def test_pages_uses_correct_template(self):
         """URL-адрес использует соответствующий шаблон."""
-        for url, template in self.templates_page_names.items():
+        templates_url_names = data.templates_url_names.value
+        templates_url_names[self.DETAIL_POST] = 'posts/post_detail.html'
+        templates_url_names[self.POST_EDIT] = 'posts/create_post.html'
+        for url, template in templates_url_names.items():
             with self.subTest(url=url):
                 response = self.authorized_client.get(url)
                 self.assertTemplateUsed(response, template)
