@@ -102,3 +102,23 @@ class Follow(models.Model):
             fields=('user', 'author'),
             name='unique_user_author',
         ),)
+
+
+class Profile(models.Model):
+    """Класс расширяет базовый класс User."""
+    user = models.OneToOneField(User,
+                                on_delete=models.CASCADE,
+                                related_name='profile'
+                                )
+    date_birth = models.DateField('Дата рождения',
+                                  null=True,
+                                  blank=True
+                                  )
+    photo = models.ImageField('Фото профиля',
+                              upload_to=f'users/',
+                              blank=True
+                              )
+    location = models.CharField('Место рождения',
+                                max_length=200,
+                                blank=True
+                                )

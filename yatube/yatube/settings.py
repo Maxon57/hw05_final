@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = '!99ldz&)5s0qkftlixzu(14lje^5kpm!n%4a_%2*!*c%fv^vqa'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     'users',
     'core',
     'about',
-    'sorl.thumbnail'
+    'sorl.thumbnail',
+
 ]
 
 MIDDLEWARE = [
