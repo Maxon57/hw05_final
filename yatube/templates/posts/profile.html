@@ -4,33 +4,62 @@
     {% load static %}
     {% load thumbnail %}
     <div class="container py-5">
-        <h1>Все посты пользователя {{ author.username }}</h1>
-        <h3>Всего постов: {{ page_obj|length }} </h3>
-        {% if author.username != user.username and user.is_authenticated %}
-            {% if following %}
-                <a class="btn btn-lg btn-danger"
-                   href="{% url 'posts:profile_unfollow' author.username %}"
-                   role="button">
-                    Отписаться
-                </a>
-            {% else %}
-                <a class="btn btn-lg btn-primary"
-                   href="{% url 'posts:profile_follow' author.username %}"
-                   role="button">
-                    Подписаться
-                </a>
-            {% endif %}
-        {% endif %}
-        {% for post in page_obj %}
-            {% include 'posts/includes/post_list.html' %}
-            {% if not forloop.last %}
-                <hr>
-            {% endif %}
-        {% empty %}
-            <p>
-                К сожалению нет ни одного поста
-            </p>
-        {% endfor %}
-        {% include 'includes/paginator.html' %}
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-5 col-lg-3">
+                <div class="border border-1 px-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            {#                          {% thumbnail post.image "960x339" crop="center" upscale=True as im %}#}
+                            {#                            <img class="card-img my-2" src="{{ im.url }}">#}
+                            {#                        {% endthumbnail %}#}
+                            image
+                            Date_birth
+                            name
+                        </li>
+                        <li class="list-group-item">
+                            подписчиков ...
+                            подписан ...
+                        </li>
+                        <li class="list-group-item">
+                            записей
+                        </li>
+                        <li class="list-group-item">
+                            кнопка отписаться
+                        </li>
+                    </ul>
+                    <h1>Все посты пользователя {{ author.username }}</h1>
+                    <h3>Всего постов: {{ page_obj|length }} </h3>
+                    {% if author.username != user.username and user.is_authenticated %}
+                        {% if following %}
+                            <a class="btn btn-lg btn-danger"
+                               href="{% url 'posts:profile_unfollow' author.username %}"
+                               role="button">
+                                Отписаться
+                            </a>
+                        {% else %}
+                            <a class="btn btn-lg btn-primary"
+                               href="{% url 'posts:profile_follow' author.username %}"
+                               role="button">
+                                Подписаться
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-7 col-lg-9">
+                {% for post in page_obj %}
+                    {% include 'posts/includes/post_list.html' %}
+                    {#                        {% if not forloop.last %}#}
+                    {#                            <hr>#}
+                    {#                        {% endif %}#}
+                    {% empty %}
+                    <p>
+                        К сожалению нет ни одного поста
+                    </p>
+                {% endfor %}
+                {% include 'includes/paginator.html' %}
+            </div>
+        </div>
+
     </div>
 {% endblock %}

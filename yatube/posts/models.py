@@ -115,7 +115,7 @@ class Profile(models.Model):
                                   blank=True
                                   )
     photo = models.ImageField('Фото профиля',
-                              upload_to=f'users/',
+                              upload_to='users/',
                               blank=True
                               )
     location = models.CharField('Место рождения',
