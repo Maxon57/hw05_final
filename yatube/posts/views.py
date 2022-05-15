@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 
+from users.models import Profile
 from .forms import CommentForm, PostForm
 from .models import Comment, Follow, Group, Post, User
 from .utils import check_user, install_paginator
@@ -27,13 +29,19 @@ def group_posts(request, slug):
 def profile(request, username):
     author = get_object_or_404(User, username=username)
     posts = Post.objects.select_related('group',
-                                        'author').filter(author_id=author.pk)
+                                        'author').annotate(
+        count_comments=Count('comments')).filter(author_id=author.pk)
     following = Follow.objects.filter(author_id=author.pk,
                                       user_id=request.user.pk).exists()
+    profile_info = Profile.objects.select_related('user').annotate(
+        follower=Count('user__follower', distinct=True),
+        following=Count('user__following', distinct=True),
+        count_posts=Count('user__user_info', distinct=True)).get(user=author)
     context = {
         'page_obj': install_paginator(request, posts),
         'author': author,
-        'following': following
+        'following': following,
+        'profile_info': profile_info
     }
     return render(request, 'posts/profile.html', context)
 

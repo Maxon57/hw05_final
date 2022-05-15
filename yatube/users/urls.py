@@ -4,7 +4,7 @@ from django.contrib.auth.views import (LoginView, LogoutView,
 from django.urls import path
 
 from .views import (PasswordReset, PasswordResetComplete, PasswordResetConfirm,
-                    PasswordResetDone, SignUp)
+                    PasswordResetDone, SignUp, UpdateUserData)
 
 app_name = 'users'
 urlpatterns = [
@@ -60,4 +60,8 @@ urlpatterns = [
          ),
          name='password_reset_compete'
          ),
+    path('update_profile/<username>/',
+         UpdateUserData.as_view(),
+         name='update_profile'
+         )
 ]
