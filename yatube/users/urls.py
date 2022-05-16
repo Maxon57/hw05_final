@@ -60,8 +60,4 @@ urlpatterns = [
          ),
          name='password_reset_compete'
          ),
-    path('update_profile/<username>/',
-         UpdateUserData.as_view(),
-         name='update_profile'
-         )
 ]

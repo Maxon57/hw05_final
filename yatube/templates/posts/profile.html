@@ -9,16 +9,16 @@
                 <div class="border border-1 px-0">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            {% thumbnail profile_info.photo "1960x1596" crop="center" upscale=True as im %}
-                                <img class="card-img my-2" src="{{ im.url }}">
-                            {% endthumbnail %}
-                            <p>Дата рождения: {{ profile_info.date_birth }}</p>
-                            <p>Город: {{ profile_info.location }}</p>
-                            <a href="{% url 'posts:profile' profile_info.user.username %}">@{{ profile_info.user.username }}</a>
+{#                            {% thumbnail profile_info.photo "1960x1596" crop="center" upscale=True as im %}#}
+{#                                <img class="card-img my-2" src="{{ im.url }}">#}
+{#                            {% endthumbnail %}#}
+                            <p>Дата рождения:</p>
+                            <p>Город:</p>
+                            <a href="{% url 'posts:profile' profile_info.username %}">@{{ profile_info.username }}</a>
                         </li>
                         <li class="list-group-item">
-                            <span>Подписчиков: {{ profile_info.following }}</span><br>
-                            <span>Подписан: {{ profile_info.follower }}</span>
+                            <span>Подписчиков: {{ profile_info.following_count }}</span><br>
+                            <span>Подписан: {{ profile_info.follower_count }}</span>
                         </li>
                         <li class="list-group-item">
                             <span>Записей: {{ profile_info.count_posts }}</span>
