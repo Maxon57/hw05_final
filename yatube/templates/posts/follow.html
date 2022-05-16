@@ -7,9 +7,6 @@
     <div class="container">
         {% for post in page_obj %}
             {% include 'posts/includes/post_list.html' %}
-            {% if not forloop.last %}
-                <hr>
-            {% endif %}
         {% empty %}
             <p>
                 К сожалению нет ни одного поста
