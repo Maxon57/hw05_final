@@ -35,7 +35,7 @@ def profile(request, username):
     profile_info = User.objects.annotate(
         follower_count=Count('follower', distinct=True),
         following_count=Count('following', distinct=True),
-        count_posts=Count('user_info', distinct=True)).get(user=author.username)
+        count_posts=Count('user_info', distinct=True)).get(pk=author.pk)
     context = {
         'page_obj': install_paginator(request, posts),
         'author': author,
